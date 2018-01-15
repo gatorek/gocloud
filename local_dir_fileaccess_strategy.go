@@ -29,9 +29,25 @@ func (s *localDirStrategy) add(id string, data io.ReadCloser) string {
 }
 
 func (s *localDirStrategy) update(id string, data io.ReadCloser) string {
-	return ""
+	path      := config("dir")
+	fullname  := filepath.Join(path, id)
+	file, err := os.Create(fullname)
+	if err != nil {
+		return "error"
+	}
+	io.Copy(file, data)
+	if r := recover(); r != nil {
+		return "error"
+	}
+	return "ok"
 }
 
 func (s *localDirStrategy) delete(id string) string {
-	return ""
+	path      := config("dir")
+	fullname  := filepath.Join(path, id)
+	err := os.Remove(fullname)
+	if err != nil {
+		return "error"
+	}
+	return "ok"
 }

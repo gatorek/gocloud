@@ -12,7 +12,9 @@ func main() {
 	v1 := router.Group("/")
 	{
 		v1.GET("/:filename", fetchFile)
-		v1.POST("/:filename", addFile)
+		v1.PUT("/:filename", addFile)
+		v1.POST("/:filename", updateFile)
+		v1.DELETE("/:filename", deleteFile)
 	}
 	router.Run()
 }

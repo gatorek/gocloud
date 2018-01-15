@@ -1,6 +1,4 @@
 TODO
-* add replace file Action
-* add delete file Action
 * add tests
 * secure write path
 * add file versioning (POST and GET)

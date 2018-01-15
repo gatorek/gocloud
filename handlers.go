@@ -18,3 +18,21 @@ func addFile(c *gin.Context) {
 		c.String(http.StatusOK, "ok")
 	}
 }
+
+func updateFile(c *gin.Context) {
+	result := FileAccessor.add(c.Param("filename"), c.Request.Body)
+	if result == "error" {
+		c.String(http.StatusInternalServerError, "error")
+	} else {
+		c.String(http.StatusOK, "ok")
+	}
+}
+
+func deleteFile(c *gin.Context) {
+	result := FileAccessor.delete(c.Param("filename"))
+	if result == "error" {
+		c.String(http.StatusInternalServerError, "error")
+	} else {
+		c.String(http.StatusOK, "ok")
+	}
+}
